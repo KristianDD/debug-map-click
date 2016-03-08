@@ -1,0 +1,45 @@
+{
+  "ProjectName": "MapView",
+  "ProjectGuid": "ba2206a0-7399-4be0-b00e-3852ab5cc46f",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.MapView",
+  "DisplayName": "MapView",
+  "Author": "",
+  "Description": "MapView",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.7.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "false",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{c3e1eab6-e236-418a-bb12-e0271842e462}",
+  "WP8ProductID": "{a14e4e45-c305-4742-847e-b0096d23c4da}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.MapView",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
+}
