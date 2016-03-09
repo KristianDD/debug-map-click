@@ -1,0 +1,86 @@
+{
+    "name": "masterDetailViewModel",
+    "dataProvider": "testMapView",
+    "collection": "TestContetntType",
+    "headerField": "TestTitle",
+    "listExtraFields": [],
+    "pullToRefresh": false,
+    "endlessScroll": false,
+    "deleteItemButton": false,
+    "detailHeaderField": "TestTitle",
+    "detailDescriptionField": "TestDescription",
+    "detailExtraFields": [],
+    "addItemForm": true,
+    "editItemForm": true,
+    "components": [
+        {
+            "name": "editableListForm",
+            "formType": "list",
+            "components": [
+                {
+                    "name": "description",
+                    "title": "Description",
+                    "inputType": "shortText",
+                    "dataBindingOptional": "TestDescription",
+                    "type": "kendo-ui-mobile:editableListFormField",
+                    "isNew": true
+                }
+            ],
+            "type": "kendo-ui-mobile:editableListForm",
+            "isNew": true
+        },
+        {
+            "name": "editableListForm",
+            "formType": "detail",
+            "components": [
+                {
+                    "name": "position",
+                    "title": "Position",
+                    "inputType": "shortText",
+                    "dataBindingOptional": "TestGeopoint",
+                    "type": "kendo-ui-mobile:editableListFormField",
+                    "isNew": true
+                }
+            ],
+            "type": "kendo-ui-mobile:editableListForm",
+            "isNew": true
+        },
+        {
+            "name": "editableListForm",
+            "formType": "add",
+            "components": [
+                {
+                    "name": "ttitle",
+                    "title": "Ttitle",
+                    "inputType": "text",
+                    "placeholder": "Title",
+                    "dataBinding": "TestTitle",
+                    "type": "kendo-ui-mobile:editableListFormField",
+                    "isNew": true
+                }
+            ],
+            "type": "kendo-ui-mobile:editableListForm",
+            "isNew": true
+        },
+        {
+            "name": "editableListForm",
+            "formType": "edit",
+            "components": [
+                {
+                    "name": "title",
+                    "title": "Title",
+                    "inputType": "text",
+                    "placeholder": "Title",
+                    "dataBinding": "TestTitle",
+                    "type": "kendo-ui-mobile:editableListFormField",
+                    "isNew": true
+                }
+            ],
+            "type": "kendo-ui-mobile:editableListForm",
+            "isNew": true
+        }
+    ],
+    "type": "mapView:mapView",
+    "title": "Map",
+    "isNew": true
+}

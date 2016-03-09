@@ -8,9 +8,103 @@
       "title": "Home View",
       "addToNavigation": true,
       "icon": "home"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "masterDetailView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:editableList",
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "components": [
+            {
+              "type": "kendo-ui-mobile:editableListForm",
+              "components": [
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "description",
+                  "title": "Description",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "TestDescription"
+                }
+              ],
+              "name": "editableListForm",
+              "formType": "list"
+            },
+            {
+              "type": "kendo-ui-mobile:editableListForm",
+              "components": [
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "position",
+                  "title": "Position",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "TestGeopoint"
+                }
+              ],
+              "name": "editableListForm1",
+              "formType": "detail"
+            },
+            {
+              "type": "kendo-ui-mobile:editableListForm",
+              "components": [
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "ttitle",
+                  "title": "Ttitle",
+                  "inputType": "text",
+                  "placeholder": "Title",
+                  "dataBinding": "TestTitle"
+                }
+              ],
+              "name": "editableListForm4",
+              "formType": "add"
+            },
+            {
+              "type": "kendo-ui-mobile:editableListForm",
+              "components": [
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "title",
+                  "title": "Title",
+                  "inputType": "text",
+                  "placeholder": "Title",
+                  "dataBinding": "TestTitle"
+                }
+              ],
+              "name": "editableListForm5",
+              "formType": "edit"
+            }
+          ],
+          "name": "masterDetailViewModel",
+          "dataProvider": "testMapView",
+          "collection": "TestContetntType",
+          "headerField": "TestTitle",
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "deleteItemButton": false,
+          "detailHeaderField": "TestTitle",
+          "detailDescriptionField": "TestDescription",
+          "addItemForm": true,
+          "editItemForm": true
+        }
+      ],
+      "title": "Master Detail",
+      "addToNavigation": true,
+      "icon": "organize"
     }
   ],
-  "dataProviders": [],
+  "dataProviders": [
+    {
+      "type": "kendo-ui-mobile:dataProvider",
+      "name": "testMapView",
+      "title": "TestMapView / TestMapView",
+      "source": "everlive",
+      "everliveKey": "yzyhs07edprf455q",
+      "offlineStorage": true
+    }
+  ],
   "name": "kendoUiMobileApp",
   "navigation": "tabstrip",
   "view": "home",

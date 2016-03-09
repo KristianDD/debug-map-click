@@ -1,0 +1,23 @@
+<% if (addItemForm) { %><header data-role="header">
+    <div data-role="navbar" class="header-text">
+        <% if (navigation === 'listmenu') { %>
+        <a data-role="backbutton" data-align="left">Back</a>
+        <% } %>
+        <span data-role="view-title" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; display: block; margin-left: 70px; margin-right: 70px;"></span>
+        <% if (navigation === 'drawer') { %>
+        <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+        <% } else if (navigation === 'listmenu') { %>
+        <a data-align="right" data-role="button" class="nav-button" href="#/">Index</a>
+        <% } %>
+        <a data-role="button" data-align="right" data-bind="events: { click: <%= name %>.addClick }">Add</a>
+    </div>
+</header><% } %>
+
+<% if (typeof endlessScroll !== 'undefined' && endlessScroll) { %><!--  Certain features like grouping and inset styling are not supported when endless scroll is enabled. --><% } %>
+<% if (typeof filterField !== 'undefined' && filterField) { %><form class="km-filter-form custom-filter"><div class="km-filter-wrap"><input type="serach" placeholder="Search..." data-bind="{events:{keyup: <%= name %>.searchChange}}"/></div></form><% } %>
+<ul data-role="listview" data-auto-bind="false" data-style="<% if (typeof endlessScroll === 'undefined' || !endlessScroll) { %>inset<% } %>" data-template="<%= name %>Template" data-bind="{ source: <%= name %>.dataSource, events: {click: <%= name %>.itemClick} }" data-pull-to-refresh="<%= pullToRefresh %>" data-endless-scroll="<%= endlessScroll %>" <% if (typeof endlessScroll !== 'undefined' && endlessScroll && dataProvider === 'none') { %>data-virtual-view-size="50"<% } %>>
+</ul>
+<!-- START_CUSTOM_CODE_<%= name %> -->
+<!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+<!-- END_CUSTOM_CODE_<%= name %> -->
