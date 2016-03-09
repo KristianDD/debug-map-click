@@ -1,18 +1,18 @@
 'use strict';
 
-app.masterDetailView = kendo.observable({
+app.mapViewView = kendo.observable({
     onShow: function() {},
     afterShow: function() {}
 });
 
-// START_CUSTOM_CODE_masterDetailView
+// START_CUSTOM_CODE_mapViewView
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
-// END_CUSTOM_CODE_masterDetailView
+// END_CUSTOM_CODE_mapViewView
 (function(parent) {
     var dataProvider = app.data.testMapView,
         fetchFilteredData = function(paramFilter, searchFilter) {
-            var model = parent.get('masterDetailViewModel'),
+            var model = parent.get('mapViewViewModel'),
                 dataSource = model.get('dataSource');
 
             if (paramFilter) {
@@ -82,31 +82,31 @@ app.masterDetailView = kendo.observable({
             serverFiltering: true,
         },
         dataSource = new kendo.data.DataSource(dataSourceOptions),
-        masterDetailViewModel = kendo.observable({
+        mapViewViewModel = kendo.observable({
             dataSource: dataSource,
             itemClick: function(e) {
 
-                app.mobileApp.navigate('#components/masterDetailView/details.html?uid=' + e.dataItem.uid);
+                app.mobileApp.navigate('#components/mapViewView/details.html?uid=' + e.dataItem.uid);
 
             },
             addClick: function() {
-                app.mobileApp.navigate('#components/masterDetailView/add.html');
+                app.mobileApp.navigate('#components/mapViewView/add.html');
             },
             editClick: function() {
                 var uid = this.currentItem.uid;
-                app.mobileApp.navigate('#components/masterDetailView/edit.html?uid=' + uid);
+                app.mobileApp.navigate('#components/mapViewView/edit.html?uid=' + uid);
             },
             detailsShow: function(e) {
                 var item = e.view.params.uid,
-                    dataSource = masterDetailViewModel.get('dataSource'),
+                    dataSource = mapViewViewModel.get('dataSource'),
                     itemModel = dataSource.getByUid(item);
 
                 if (!itemModel.TestTitle) {
                     itemModel.TestTitle = String.fromCharCode(160);
                 }
 
-                masterDetailViewModel.set('currentItem', null);
-                masterDetailViewModel.set('currentItem', itemModel);
+                mapViewViewModel.set('currentItem', null);
+                mapViewViewModel.set('currentItem', itemModel);
             },
             currentItem: null
         });
@@ -115,15 +115,15 @@ app.masterDetailView = kendo.observable({
         onShow: function(e) {
             // Reset the form data.
             this.set('addFormData', {
-                ttitle: '',
+                editableListFormFielde2b8e8f9d9107895: '',
             });
         },
         onSaveClick: function(e) {
             var addFormData = this.get('addFormData'),
-                dataSource = masterDetailViewModel.get('dataSource');
+                dataSource = mapViewViewModel.get('dataSource');
 
             dataSource.add({
-                TestTitle: addFormData.ttitle,
+                TestTitle: addFormData.editableListFormFielde2b8e8f9d9107895,
             });
 
             dataSource.one('change', function(e) {
@@ -137,21 +137,21 @@ app.masterDetailView = kendo.observable({
     parent.set('editItemViewModel', kendo.observable({
         onShow: function(e) {
             var itemUid = e.view.params.uid,
-                dataSource = masterDetailViewModel.get('dataSource'),
+                dataSource = mapViewViewModel.get('dataSource'),
                 itemData = dataSource.getByUid(itemUid);
 
             this.set('itemData', itemData);
             this.set('editFormData', {
-                title: itemData.TestTitle,
+                editableListFormField9987d97f5443b863: itemData.TestTitle,
             });
         },
         onSaveClick: function(e) {
             var editFormData = this.get('editFormData'),
                 itemData = this.get('itemData'),
-                dataSource = masterDetailViewModel.get('dataSource');
+                dataSource = mapViewViewModel.get('dataSource');
 
             // prepare edit
-            itemData.set('TestTitle', editFormData.title);
+            itemData.set('TestTitle', editFormData.editableListFormField9987d97f5443b863);
 
             dataSource.one('sync', function(e) {
                 app.mobileApp.navigate('#:back');
@@ -167,10 +167,10 @@ app.masterDetailView = kendo.observable({
 
     if (typeof dataProvider.sbProviderReady === 'function') {
         dataProvider.sbProviderReady(function dl_sbProviderReady() {
-            parent.set('masterDetailViewModel', masterDetailViewModel);
+            parent.set('mapViewViewModel', mapViewViewModel);
         });
     } else {
-        parent.set('masterDetailViewModel', masterDetailViewModel);
+        parent.set('mapViewViewModel', mapViewViewModel);
     }
 
     parent.set('onShow', function(e) {
@@ -178,9 +178,9 @@ app.masterDetailView = kendo.observable({
 
         fetchFilteredData(param);
     });
-})(app.masterDetailView);
+})(app.mapViewView);
 
-// START_CUSTOM_CODE_masterDetailViewModel
+// START_CUSTOM_CODE_mapViewViewModel
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
-// END_CUSTOM_CODE_masterDetailViewModel
+// END_CUSTOM_CODE_mapViewViewModel
