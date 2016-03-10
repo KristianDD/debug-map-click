@@ -23,13 +23,13 @@
               "components": [
                 {
                   "type": "kendo-ui-mobile:editableListFormField",
-                  "name": "editableListFormField7389bd6b2abb001a",
+                  "name": "editableListFormField73b7303f3feec354",
                   "title": "Description",
                   "inputType": "shortText",
                   "dataBindingOptional": "TestDescription"
                 }
               ],
-              "name": "editableListForm6d0608991e87d0eb",
+              "name": "editableListForm56496933b828d20c",
               "formType": "list"
             },
             {
@@ -37,13 +37,13 @@
               "components": [
                 {
                   "type": "kendo-ui-mobile:editableListFormField",
-                  "name": "editableListFormFielde22c3f513b3baf9b",
+                  "name": "editableListFormFieldb7a38b4cbf7fdcbb",
                   "title": "Position",
                   "inputType": "shortText",
                   "dataBindingOptional": "TestGeopoint"
                 }
               ],
-              "name": "editableListForm278696d8d2c1872b",
+              "name": "editableListFormefe4ff2d50f6380e",
               "formType": "detail"
             },
             {
@@ -51,14 +51,14 @@
               "components": [
                 {
                   "type": "kendo-ui-mobile:editableListFormField",
-                  "name": "editableListFormFielde2b8e8f9d9107895",
+                  "name": "editableListFormField754fe575b590960f",
                   "title": "Ttitle",
                   "inputType": "text",
                   "placeholder": "Title",
                   "dataBinding": "TestTitle"
                 }
               ],
-              "name": "editableListForm2e5df40786f7c5a9",
+              "name": "editableListForm1b0842819ad48d4d",
               "formType": "add"
             },
             {
@@ -66,14 +66,14 @@
               "components": [
                 {
                   "type": "kendo-ui-mobile:editableListFormField",
-                  "name": "editableListFormField9987d97f5443b863",
+                  "name": "editableListFormField546bf57ab39870b6",
                   "title": "Title",
                   "inputType": "text",
                   "placeholder": "Title",
                   "dataBinding": "TestTitle"
                 }
               ],
-              "name": "editableListFormd85d51877187e3e2",
+              "name": "editableListForme57b7be98111ce40",
               "formType": "edit"
             }
           ],

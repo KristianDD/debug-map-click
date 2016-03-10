@@ -115,7 +115,7 @@ app.mapViewView = kendo.observable({
         onShow: function(e) {
             // Reset the form data.
             this.set('addFormData', {
-                editableListFormFielde2b8e8f9d9107895: '',
+                editableListFormField754fe575b590960f: '',
             });
         },
         onSaveClick: function(e) {
@@ -123,7 +123,7 @@ app.mapViewView = kendo.observable({
                 dataSource = mapViewViewModel.get('dataSource');
 
             dataSource.add({
-                TestTitle: addFormData.editableListFormFielde2b8e8f9d9107895,
+                TestTitle: addFormData.editableListFormField754fe575b590960f,
             });
 
             dataSource.one('change', function(e) {
@@ -142,7 +142,7 @@ app.mapViewView = kendo.observable({
 
             this.set('itemData', itemData);
             this.set('editFormData', {
-                editableListFormField9987d97f5443b863: itemData.TestTitle,
+                editableListFormField546bf57ab39870b6: itemData.TestTitle,
             });
         },
         onSaveClick: function(e) {
@@ -151,7 +151,7 @@ app.mapViewView = kendo.observable({
                 dataSource = mapViewViewModel.get('dataSource');
 
             // prepare edit
-            itemData.set('TestTitle', editFormData.editableListFormField9987d97f5443b863);
+            itemData.set('TestTitle', editFormData.editableListFormField546bf57ab39870b6);
 
             dataSource.one('sync', function(e) {
                 app.mobileApp.navigate('#:back');
