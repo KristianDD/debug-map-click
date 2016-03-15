@@ -75,8 +75,7 @@
                 <% if (typeof imageField !== 'undefined' && imageField) { %>
                 dataItem['<%= imageField %>Url'] =
                     processImage(dataItem['<%= imageField %>']);
-                <% } %><% if (source === 'everlive') { %>
-                flattenLocationProperties(dataItem);<% } %>
+                <% } %>
             }
         },<% } %>
         error: function (e) {
@@ -237,6 +236,26 @@
     } else {
         parent.set('<%= name %>', <%= name %>);
     }
+						  
+	var getLocation = function(options) {
+		var dfd = new $.Deferred();
+
+		//Default value for options
+		if (options === undefined) {
+			options = {enableHighAccuracy: true};
+		}
+
+		navigator.geolocation.getCurrentPosition(
+			function(position) { 
+				dfd.resolve(position);
+			}, 
+			function(error) {
+				dfd.reject(error);
+			}, 
+			options);
+
+		return dfd.promise();
+	}
 
     parent.set('onShow', function (e) {
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null;
@@ -252,6 +271,38 @@
             <%= name %>.set('dataSource', dataSource);
             fetchFilteredData(param);
         });<% } else { %> fetchFilteredData(param); <% } %>
+			
+		if(!parent.map){
+			 parent.map = L.map('map');
+
+            L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.{ext}', {
+                type: 'map',
+                ext: 'jpg',
+                attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                subdomains: '1234'
+            }).addTo(parent.map);
+		}
+
+        getLocation()
+			.then(function(position) {
+            	var latlng = L.latLng(position.coords.latitude, position.coords.longitude),
+					dataSource = <%= name %>.get('dataSource');
+						
+				dataSource.fetch()
+					.then(function(){
+						var data = dataSource.data();
+					
+						for(var i=0; i < data.length; i++){
+							var position = data[i].<%= positionField %>
+						}
+					});
+				
+			
+				parent.map.setView(latlng, 13);
+            	L.marker(latlng).addTo( parent.map);
+			
+				
+        	});
     });
 })(app.<%= parent %>);
 

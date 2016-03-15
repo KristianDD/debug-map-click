@@ -1,4 +1,4 @@
-<div data-role="view" data-title="Map view view" data-layout="main" data-model="app.mapViewView" data-show="app.mapViewView.onShow" data-after-show="app.mapViewView.afterShow">
+<div data-role="view" data-stretch="true" data-title="Map view view" data-layout="main" data-model="app.mapViewView" data-show="app.mapViewView.onShow" data-after-show="app.mapViewView.afterShow">
 
     <!-- START_CUSTOM_CODE_mapViewView -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
@@ -13,13 +13,7 @@
         </div>
     </header>
 
-
-    <ul data-role="listview" data-auto-bind="false" data-style="inset" data-template="mapViewViewModelTemplate" data-bind="{ source: mapViewViewModel.dataSource, events: {click: mapViewViewModel.itemClick} }" data-pull-to-refresh="false" data-endless-scroll="false">
-    </ul>
-    <!-- START_CUSTOM_CODE_mapViewViewModel -->
-    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
-
-    <!-- END_CUSTOM_CODE_mapViewViewModel -->
+    <div id="map"></div>
     <script type="text/x-kendo-template" id="mapViewViewModelTemplate">
         <div class="image-with-text">
             <h3>#: data['TestTitle'] #</h3>

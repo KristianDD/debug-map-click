@@ -233,6 +233,20 @@
             "description": "Which field of the data collection do you want to use as heading text in the details view? Leave empty to omit.",
             "required": "requiredOptional"
         },
+		{
+            "name": "positionField",
+            "group": {
+                "name": "[5]Detail",
+                "subSection": "Detail/Detail Screen",
+                "nonCollapsible": true,
+                "inline": true
+            },
+            "title": "Position",
+            "editor": "DataProviderFieldEditor",
+            "type": "string",
+            "description": "Which field of the data collection do you want to use as position.",
+            "required": "required"
+        },
         {
             "name": "detailSubHeaderField",
             "group": {

@@ -9,6 +9,7 @@
     "deleteItemButton": false,
     "detailHeaderField": "TestTitle",
     "detailDescriptionField": "TestDescription",
+	"positionField": "TestGeopoint",
     "detailExtraFields": [],
     "addItemForm": true,
     "editItemForm": true,
