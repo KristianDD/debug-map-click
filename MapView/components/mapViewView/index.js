@@ -50,6 +50,65 @@ app.mapViewView = kendo.observable({
                 }
             }
         },
+        getLocation = function(options) {
+            var dfd = new $.Deferred();
+
+            //Default value for options
+            if (options === undefined) {
+                options = {
+                    enableHighAccuracy: true
+                };
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    dfd.resolve(position);
+                },
+                function(error) {
+                    dfd.reject(error);
+                },
+                options);
+
+            return dfd.promise();
+        },
+        setupMap = function() {
+            if (!parent.map) {
+                parent.map = L.map('map');
+
+                L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.{ext}', {
+                    type: 'map',
+                    ext: 'jpg',
+                    attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    subdomains: '1234'
+                }).addTo(parent.map);
+            }
+
+            getLocation()
+                .then(function(position) {
+                    var latlng = L.latLng(position.coords.latitude, position.coords.longitude),
+                        dataSource = mapViewViewModel.get('dataSource');
+
+                    dataSource.fetch()
+                        .then(function() {
+                            var data = dataSource.data();
+
+                            for (var i = 0; i < data.length; i++) {
+                                var position = data[i].TestGeopoint;
+
+                                var marker = L.marker([position.latitude, position.longitude], {
+                                    uid: data[i].uid
+                                }).addTo(parent.map);
+                                marker.on("click", function() {
+                                    console.log(this.options.uid);
+                                });
+                            }
+                        });
+
+                    parent.map.setView(latlng, 13);
+                    L.marker(latlng).addTo(parent.map);
+
+                });
+        },
         dataSourceOptions = {
             type: 'everlive',
             transport: {
@@ -114,7 +173,7 @@ app.mapViewView = kendo.observable({
         onShow: function(e) {
             // Reset the form data.
             this.set('addFormData', {
-                editableListFormField5810fb7580fe55c3: '',
+                editableListFormField56c644528aff43ef: '',
             });
         },
         onSaveClick: function(e) {
@@ -122,7 +181,7 @@ app.mapViewView = kendo.observable({
                 dataSource = mapViewViewModel.get('dataSource');
 
             dataSource.add({
-                TestTitle: addFormData.editableListFormField5810fb7580fe55c3,
+                TestTitle: addFormData.editableListFormField56c644528aff43ef,
             });
 
             dataSource.one('change', function(e) {
@@ -141,7 +200,7 @@ app.mapViewView = kendo.observable({
 
             this.set('itemData', itemData);
             this.set('editFormData', {
-                editableListFormFieldbde193bf384c9155: itemData.TestTitle,
+                editableListFormFielde4f62c07cd6a9600: itemData.TestTitle,
             });
         },
         onSaveClick: function(e) {
@@ -150,7 +209,7 @@ app.mapViewView = kendo.observable({
                 dataSource = mapViewViewModel.get('dataSource');
 
             // prepare edit
-            itemData.set('TestTitle', editFormData.editableListFormFieldbde193bf384c9155);
+            itemData.set('TestTitle', editFormData.editableListFormFielde4f62c07cd6a9600);
 
             dataSource.one('sync', function(e) {
                 app.mobileApp.navigate('#:back');
@@ -172,63 +231,12 @@ app.mapViewView = kendo.observable({
         parent.set('mapViewViewModel', mapViewViewModel);
     }
 
-    var getLocation = function(options) {
-        var dfd = new $.Deferred();
-
-        //Default value for options
-        if (options === undefined) {
-            options = {
-                enableHighAccuracy: true
-            };
-        }
-
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                dfd.resolve(position);
-            },
-            function(error) {
-                dfd.reject(error);
-            },
-            options);
-
-        return dfd.promise();
-    }
-
     parent.set('onShow', function(e) {
         var param = e.view.params.filter ? JSON.parse(e.view.params.filter) : null;
 
         fetchFilteredData(param);
 
-        if (!parent.map) {
-            parent.map = L.map('map');
-
-            L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.{ext}', {
-                type: 'map',
-                ext: 'jpg',
-                attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                subdomains: '1234'
-            }).addTo(parent.map);
-        }
-
-        getLocation()
-            .then(function(position) {
-                var latlng = L.latLng(position.coords.latitude, position.coords.longitude),
-                    dataSource = mapViewViewModel.get('dataSource');
-
-                dataSource.fetch()
-                    .then(function() {
-                        var data = dataSource.data();
-
-                        for (var i = 0; i < data.length; i++) {
-                            var position = data[i].TestGeopoint;
-                        }
-					
-                		parent.map.setView(latlng, 13);
-                		L.marker(latlng).addTo(parent.map);
-                    });
-
-
-            });
+        setupMap();
     });
 })(app.mapViewView);
 

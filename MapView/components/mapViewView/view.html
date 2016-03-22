@@ -13,14 +13,19 @@
         </div>
     </header>
 
-    <div id="map"></div>
+    <div id="map">
+        <div>
+            <!-- START_CUSTOM_CODE_mapViewViewModel -->
+            <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+            <!-- END_CUSTOM_CODE_mapViewViewModel -->
+        </div>
+    </div>
     <script type="text/x-kendo-template" id="mapViewViewModelTemplate">
         <div class="image-with-text">
             <h3>#: data['TestTitle'] #</h3>
 
         </div>
-        <p class="editableListItem">
-            <label>Description<span>#: data['TestDescription'] #</span></label>
-        </p>
+        <p class="editableListItem"><span>Description</span><span>#: data['TestDescription'] #</span></p>
     </script>
 </div>
