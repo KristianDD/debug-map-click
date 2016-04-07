@@ -99,7 +99,16 @@ app.mapViewView = kendo.observable({
                                     uid: data[i].uid
                                 }).addTo(parent.map);
                                 marker.on("click", function() {
-                                    console.log(this.options.uid);
+									var newItem,
+										oldItem = mapViewViewModel.get("currentItem");
+										
+									newItem = mapViewViewModel.setCurrentItemByUid(this.options.uid);
+									if(newItem !== oldItem){
+										mapViewViewModel.set("itemDetailsVisible",true);
+									} else {
+										mapViewViewModel.set("itemDetailsVisible", !mapViewViewModel.get("itemDetailsVisible"));
+									}
+									
                                 });
                             }
                         });
@@ -155,9 +164,11 @@ app.mapViewView = kendo.observable({
                 app.mobileApp.navigate('#components/mapViewView/edit.html?uid=' + uid);
             },
             detailsShow: function(e) {
-                var item = e.view.params.uid,
-                    dataSource = mapViewViewModel.get('dataSource'),
-                    itemModel = dataSource.getByUid(item);
+                mapViewViewModel.setCurrentItemByUid(e.view.params.uid)
+            },
+			setCurrentItemByUid(uid){
+				 var dataSource = mapViewViewModel.get('dataSource'),
+					 itemModel = dataSource.getByUid(uid);
 
                 if (!itemModel.TestTitle) {
                     itemModel.TestTitle = String.fromCharCode(160);
@@ -165,7 +176,9 @@ app.mapViewView = kendo.observable({
 
                 mapViewViewModel.set('currentItem', null);
                 mapViewViewModel.set('currentItem', itemModel);
-            },
+				
+				return itemModel;
+			},
             currentItem: null
         });
 

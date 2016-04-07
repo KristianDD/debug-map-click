@@ -10,6 +10,14 @@
 	padding: 0;
 }
 
+.itemDetails {
+	position: fixed;
+    top: 300px;
+    left: 0px;
+    z-index: 1;
+    background: white;
+}
+
 /* Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes */
 
 
